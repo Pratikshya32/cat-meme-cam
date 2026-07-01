@@ -1,4 +1,4 @@
-# 🐱 MemeCat Cam
+# 🐱 MeowCam
 
 A real-time, browser-based AI camera that detects your hand gestures and face expressions using your webcam, matching them instantly to hilarious cat memes!
 
@@ -11,6 +11,7 @@ A real-time, browser-based AI camera that detects your hand gestures and face ex
 | 👌 OK Sign | OK approval cat |
 | 🙏 Namaste | Peaceful Namaste cat |
 | 🤫 Shh (Index finger up) | Quiet shut up cat |
+| ✌️ Peace | Peace/Love cat |
 | 😊 Smile | Happy smiling kitten |
 | 😛 Tongue Out | Silly tongue cat |
 
