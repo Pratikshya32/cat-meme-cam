@@ -220,9 +220,8 @@ git push origin feature/add-new-gesture
 **Pratikshya Sahoo**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Pratikshya32-181717?style=flat-square&logo=github)](https://github.com/Pratikshya32)
-[![Deloitte Certified](https://img.shields.io/badge/Deloitte-Technology_Job_Simulation-86BC25?style=flat-square&logo=deloitte&logoColor=white)](https://github.com/Pratikshya32)
 
-*Deloitte Technology Job Simulation · June 2026*
+
 
 </div>
 
