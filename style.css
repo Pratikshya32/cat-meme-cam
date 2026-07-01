@@ -202,3 +202,25 @@ h1 {
   color: #444;
   font-family: monospace;
 }
+
+.btn-action {
+  background: linear-gradient(90deg, #ff6ec7, #ffcc00);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 204, 0, 0.3);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+}
