@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemeCat Cam: AI expression & gesture camera 🐱</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <p id="load-status">Loading MediaPipe...</p>
+  </div>
+
+  <h1>🐱 MemeCat Cam</h1>
+  <p class="subtitle">Strike a gesture · Discover a cat meme</p>
+
+  <div class="arena">
+    <div class="cam-wrap">
+      <video id="video" autoplay playsinline></video>
+      <canvas id="overlay"></canvas>
+    </div>
+    <div class="vs">→</div>
+    <div class="meme-wrap">
+      <div class="no-meme-text" id="no-meme">Strike a gesture or expression<br>to unlock your cat meme! 🐾</div>
+      <img id="meme-img" style="display:none;" alt="cat meme">
+      <div class="meme-label" id="meme-label"></div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="section-label">👋 Hand Gestures</div>
+    <div class="gesture-row">
+      <div class="badge" id="b-thumbsup">👍 Thumbs Up</div>
+      <div class="badge" id="b-fist">✊ Fist</div>
+      <div class="badge" id="b-oksign">👌 OK Sign</div>
+      <div class="badge" id="b-namaste">🙏 Namaste</div>
+      <div class="badge" id="b-shutup">🤫 Shh</div>
+    </div>
+    <div class="section-label">😺 Face Expressions</div>
+    <div class="gesture-row">
+      <div class="badge" id="b-smile">😊 Smile</div>
+      <div class="badge" id="b-tongue">😛 Tongue Out</div>
+    </div>
+  </div>
+
+  <div id="debug"></div>
+
+  <!-- memes.js must load before script.js -->
+  <script src="memes.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
