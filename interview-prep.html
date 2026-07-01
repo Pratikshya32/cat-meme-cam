@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemeCat Cam - Interview Preparation Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: rgba(22, 28, 45, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #ff6ec7;
+      --secondary: #ffcc00;
+      --cyan: #00e5ff;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 110, 199, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 204, 0, 0.05) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Tabs navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: var(--font-title);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
+    }
+
+    /* Accordion section styling */
+    .qa-section {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .qa-section.active {
+      display: flex;
+    }
+
+    .qa-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .qa-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .qa-trigger {
+      width: 100%;
+      padding: 22px;
+      background: transparent;
+      border: none;
+      text-align: left;
+      color: var(--text-main);
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .qa-trigger span.icon {
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+      color: var(--secondary);
+    }
+
+    .qa-card.open .qa-trigger span.icon {
+      transform: rotate(45deg);
+      color: var(--primary);
+    }
+
+    .qa-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      padding: 0 22px;
+    }
+
+    .qa-card.open .qa-content {
+      max-height: 2000px;
+      padding-bottom: 22px;
+      transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+    }
+
+    .qa-content p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .qa-content strong {
+      color: var(--text-main);
+    }
+
+    .qa-content code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: var(--cyan);
+      font-size: 0.9rem;
+    }
+
+    .alert {
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .alert-tip {
+      background: rgba(0, 229, 255, 0.08);
+      border-left: 4px solid var(--cyan);
+    }
+
+    .alert-important {
+      background: rgba(255, 204, 0, 0.08);
+      border-left: 4px solid var(--secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>🐱 MemeCat Cam Prep Guide</h1>
+      <p>Interactive Study Guide for Project Architecture, Code, and Machine Learning Concepts</p>
+    </header>
+
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchSection('architecture')">Architecture</button>
+      <button class="tab-btn" onclick="switchSection('ml-concepts')">ML/CV Concepts</button>
+      <button class="tab-btn" onclick="switchSection('code-heuristics')">My Code & Heuristics</button>
+      <button class="tab-btn" onclick="switchSection('tradeoffs')">Tradeoffs & Scaling</button>
+      <button class="tab-btn" onclick="switchSection('honesty')">Professional Stance</button>
+    </div>
+
+    <!-- SECTION: ARCHITECTURE -->
+    <div id="architecture" class="qa-section active">
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>Why was MediaPipe chosen for this project instead of a custom Python backend model?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p><strong>Latency & Performance</strong>: Transferring raw webcam video frames to a Python backend (via WebSockets or REST) creates substantial network latency, causing visual stutter. MediaPipe's WebAssembly and GPU-accelerated tasks run directly in the client's browser, giving 30+ frames-per-second real-time performance.</p>
+          <p><strong>Scalability & Cost</strong>: An API-driven video analysis server requires costly cloud infrastructure with GPU instances to handle concurrent video streams. This static client-side deployment runs entirely on the user's local machine, meaning it costs <strong>zero dollars</strong> to scale to millions of users.</p>
+          <p><strong>Privacy by Design</strong>: Video streams never leave the client's computer. All image processing, facial landmarking, and gesture classifications occur completely offline within the local browser sandbox.</p>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>Explain the end-to-end data pipeline from the camera to the cat meme.</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p>The pipeline consists of the following consecutive stages:</p>
+          <p>1. <strong>Capture</strong>: HTML5 <code>navigator.mediaDevices.getUserMedia</code> captures video frames at 640x480 resolution.</p>
+          <p>2. <strong>Landmark Inference</strong>: On each frame, MediaPipe's Hand and Face Landmarker models process the pixel matrix to output 21 3D coordinates for the hand and 468 for the face.</p>
+          <p>3. <strong>Geometric Heuristic Classification</strong>: The coordinates are sent to custom classifiers (e.g. <code>identifyHandGesture</code>) which calculate relative distances and joint positions to yield a candidate string identifier (like <code>victory</code>).</p>
+          <p>4. <strong>Smoothing (Temporal Filter)</strong>: The candidate string is appended to a sliding window buffer. A rolling window majority check filters out transient frame noise.</p>
+          <p>5. <strong>UI Mapping</strong>: The smoothed gesture updates the DOM, matching the key to its base64 image in <code>memes.js</code>, updating the active status badge, and toggling CSS transitions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: ML CONCEPTS -->
+    <div id="ml-concepts" class="qa-section">
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>What are landmarks, and how does MediaPipe detect them?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p><strong>Landmarks</strong> are relative coordinates (x, y, z) mapped to human anatomical features. Hand landmarks correspond to skeletal joints, while facial landmarks match facial contours (eyes, lips, brows).</p>
+          <p>MediaPipe uses a two-stage pipeline:</p>
+          <p>1. <strong>Detector Model (BlazePalm / BlazeFace)</strong>: A lightweight detector sweeps the entire video frame to locate bounding box crops around hands or faces.</p>
+          <p>2. <strong>Landmark Regression Model</strong>: Operates strictly inside the cropped region to estimate coordinate regression maps, avoiding expensive full-frame model evaluations.</p>
+          <div class="alert alert-tip">
+            <strong>Key Concept</strong>: Using bounding box crops for coordinate estimation is what allows the models to run efficiently on low-power devices, including mobile web browsers.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>What are the tradeoffs of using pretrained models vs training your own custom model?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p><strong>Pretrained Models (MediaPipe)</strong>:</p>
+          <p>- <em>Pros</em>: Instant deployment, optimized by Google on diverse datasets with cross-device and GPU/CPU configurations.</p>
+          <p>- <em>Cons</em>: Restricted to the predefined landmarks (e.g. 21 joints); doesn't natively classify specific combinations of gestures without an added heuristic layer.</p>
+          <p><strong>Custom Trained Models (e.g. TensorFlow/YOLO classification model)</strong>:</p>
+          <p>- <em>Pros</em>: Can learn direct mapping from pixel space to custom gesture classifications in a single step.</p>
+          <p>- <em>Cons</em>: Requires collecting thousands of labeled training images, managing model weights files, and compiling complex web bundles, which often hurts performance in browser runtimes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: CODE HEURISTICS -->
+    <div id="code-heuristics" class="qa-section">
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>Explain the logic and thresholds used to identify the Victory (Peace Sign) gesture.</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p>The Victory gesture utilizes a multi-criteria coordinate validation block:</p>
+          <p>1. <strong>Extension Validation</strong>: The Index (8) and Middle (12) finger tips are confirmed as straight, while the Ring (16) and Pinky (20) fingers are curled.</p>
+          <p>2. <strong>Dynamic Spread Threshold</strong>: We measure distance between Index tip (8) and Middle tip (12): <code>distanceIndexToMiddle > handSize * 0.25</code>.</p>
+          <p>3. <strong>Why relative scale?</strong> Instead of using hard-coded pixel distances (which break when a user moves closer or farther from the camera), the distance is divided by the <strong>handSize</strong> (the distance from wrist 0 to middle knuckle 9). This ensures translation invariance.</p>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>How does the Confidence Smoothing buffer prevent UI flickering?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p>In standard real-time vision loops, a single frame with poor illumination or motion blur might result in a failed landmark detection, causing the active gesture to fall back to null. This causes annoying UI flicker.</p>
+          <p>To solve this, we implemented a sliding-window queue (size <code>5</code>). In each frame, the current prediction is appended to the queue, and the oldest is removed. The application only updates the UI to a new gesture if it appears in at least <strong>3 out of the last 5 frames</strong>. This acts as a low-pass filter to ignore transient noise.</p>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>What environmental factors could cause this application to fail?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p><strong>Poor Lighting / Low Contrast</strong>: MediaPipe relies on visual patterns to detect edges. Under-exposed (dark) rooms or heavy backlighting wash out hand details, causing the landmarker to lose tracking.</p>
+          <p><strong>High Speed / Motion Blur</strong>: Rapid hand movements blur the frames. The landmark model can't predict precise coordinates on blurred pixels, causing coordinates to drift or reset.</p>
+          <p><strong>Camera Perspective (Extreme Roll/Pitch)</strong>: The heuristics assume a mostly vertical hand plane. If the hand is rotated horizontally (parallel to the desk), Y-axis vertical comparisons fail because the fingers are pointing directly at the camera.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: TRADEOFFS & SCALING -->
+    <div id="tradeoffs" class="qa-section">
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>What are the architectural limitations of landmark-based heuristic models?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p><strong>Brittle Logic</strong>: As the number of gestures grows, the nested conditional checks (e.g. checking every finger's curl state) become extremely complex, brittle, and difficult to manage without breaking other gestures.</p>
+          <p><strong>Lack of Generalization</strong>: If a user has a physical limitation or holds a gesture slightly differently, rigid threshold checks might fail. It lacks the statistical tolerance of machine learning classifiers.</p>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>How would you scale this application to support dozens of complex gestures?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p>Instead of manual code comparisons, we would use a **Machine Learning Classifier** layered on top of MediaPipe's coordinates:</p>
+          <p>1. **Data Collection**: Record lists of 21-joint coordinates for each gesture to build a training CSV dataset.</p>
+          <p>2. **Classifier Training**: Train a simple algorithm like a **K-Nearest Neighbors (KNN)**, **Support Vector Machine (SVM)**, or a lightweight Multi-Layer Perceptron (MLP) in Python.</p>
+          <p>3. **Deployment**: Export the classifier weights to JS (e.g. using TensorFlow.js) to classify the coordinates in real-time. This decouples the classification from the application codebase and allows scaling to hundreds of gestures.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: PROFESSIONAL STANCE -->
+    <div id="honesty" class="qa-section">
+      <div class="qa-card">
+        <button class="qa-trigger" onclick="toggleCard(this)">
+          <span>How should you describe your work and contribution to this project in an interview?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="qa-content">
+          <p>Be confident and clear about your role. Utilizing pretrained pipelines is standard, professional practice. Here is a strong response format:</p>
+          <div class="alert alert-important">
+            "I used Google's pretrained MediaPipe Hand and Face Landmarker models to handle coordinate extraction, which is the standard approach to avoid reinventing complex deep-learning vision models. 
+            <br><br>
+            <strong>My core contributions</strong> were writing the real-time gesture-classification logic, designing translation-invariant geometric heuristics (such as relative palm scaling), implementing a sliding-window queue for frame-by-frame smoothing, and building the web collage save feature and user interface."
+          </div>
+          <p>This answers the question directly, demonstrates architectural maturity, and highlights your software engineering and math application skills.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function switchSection(sectionId) {
+      document.querySelectorAll('.qa-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.getElementById(sectionId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function toggleCard(buttonEl) {
+      const card = buttonEl.closest('.qa-card');
+      card.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
